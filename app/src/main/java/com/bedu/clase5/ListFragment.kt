@@ -41,6 +41,12 @@ class ListFragment: Fragment() {
 
     //configuramos lo necesario para desplegar el RecyclerView
     private fun setUpRecyclerView(){
+
+
+        val largePadding = resources.getDimensionPixelSize(R.dimen.product_grid_spacing)
+        val smallPadding = resources.getDimensionPixelSize(R.dimen.product_grid_spacing_small)
+        recyclerProducts.addItemDecoration(GridDecoration(largePadding, smallPadding))
+
         // indicamos que tiene un tamaño fijo
         recyclerProducts.setHasFixedSize(true)
         // indicamos el tipo de layoutManager

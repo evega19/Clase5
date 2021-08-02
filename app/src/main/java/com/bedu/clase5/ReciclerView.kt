@@ -1,6 +1,7 @@
 package com.bedu.clase5
 
 import android.content.Context
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ class RecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(layoutInflater.inflate(R.layout.item_contact, parent, false))
+        return ViewHolder(layoutInflater.inflate(R.layout.item_contact2, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -48,6 +49,23 @@ class RecyclerAdapter(
         }
     }
 
+}
+
+class GridDecoration(private val largePadding: Int, private val smallPadding: Int) : RecyclerView.ItemDecoration() {
+
+    override fun getItemOffsets(outRect: Rect, view: View,
+                                parent: RecyclerView, state: RecyclerView.State) {
+        outRect.left = smallPadding
+        outRect.right = largePadding
+        outRect.bottom = largePadding;
+
+        // Add top margin only for the first item to avoid double space between items
+        if (parent.getChildLayoutPosition(view) == 0 || parent.getChildLayoutPosition(view)==1) {
+            outRect.top = largePadding;
+        } else {
+            outRect.top = 0;
+        }
+    }
 }
 
 
